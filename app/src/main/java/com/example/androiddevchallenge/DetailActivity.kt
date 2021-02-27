@@ -21,9 +21,18 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
@@ -38,18 +47,17 @@ import dev.chrisbanes.accompanist.coil.CoilImage
 
 class DetailActivity : AppCompatActivity() {
 
-
     companion object {
         fun launch(context: Context, name: String) {
-            context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                putExtra("name", name)
-            })
+            context.startActivity(
+                Intent(context, DetailActivity::class.java).apply {
+                    putExtra("name", name)
+                }
+            )
         }
     }
 
-
     private val puppyProvider = PuppyProvider()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +70,6 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 }
-
 
 @Composable
 fun PuppyDetail(puppy: Puppy, onBackClicked: () -> Unit) {
@@ -79,7 +86,7 @@ fun PuppyDetail(puppy: Puppy, onBackClicked: () -> Unit) {
                                 onBackClicked.invoke()
                             },
 
-                        )
+                    )
                 },
                 title = { Text(text = stringResource(id = R.string.puppy_detail)) }
             )
